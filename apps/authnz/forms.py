@@ -18,5 +18,5 @@ class SignUpForm(forms.ModelForm):
 
 
 class SignInForm(forms.Form):
-    username = forms.CharField(min_length=3, max_length=150, label="نام کاربری")
-    password = forms.CharField(min_length=8, max_length=150, widget=forms.PasswordInput, label=" رمز عبور")
+    username = forms.CharField(max_length=150, label="نام کاربری")
+    password = forms.CharField(max_length=150, widget=forms.PasswordInput, label=" رمز عبور")
