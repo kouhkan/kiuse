@@ -7,7 +7,12 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" href="#">خانه</a>
-        <a class="nav-link" href="{% url 'authnz:signup' %}">ثبت‌نام/ورود</a>
+          {% if request.user.is_authenticated %}
+            <a class="btn btn-danger mr-2" href="{% url 'authnz:signout' %}">خروج</a>
+          {% else %}
+            <a class="btn btn-dark mx-2" href="{% url 'authnz:signup' %}">ثبت‌نام</a>
+            <a class="btn btn-outline-dark" href="{% url 'authnz:signin' %}">ورود</a>
+          {% endif %}
       </div>
     </div>
   </div>
