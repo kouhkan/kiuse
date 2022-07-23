@@ -11,6 +11,7 @@
       <h5 class="card-header text-center">ساخت حساب کاربری</h5>
       <div class="card-body">
         <h5 class="card-title">*دارها اطلاعات لازم هستند</h5>
+        <p class="card-text">باعث افتخاره که میخوایم تو رو در کنار خودمون داشته باشیم &#128524;</p>
         <form class="mt-4" action="" method="post">
             {% csrf_token %}
             <div class="row">
@@ -29,7 +30,7 @@
             <div class="row">
                <div class="col-sm-12">
                     <div class="alert alert-danger" role="alert">
-                    حساب کاربری دارم.  <a href="#" class="alert-link">ورود به حساب</a>
+                    حساب کاربری دارم.  <a href="{% url 'authnz:signin' %}" class="alert-link">ورود به حساب</a>
                     </div>
                </div>
             </div>
