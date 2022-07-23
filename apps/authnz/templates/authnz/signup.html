@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+ساخت حساب کاربری جدید
+{% endblock %}
+
+
+{% block content %}
+    <div class="card mt-5">
+      <h5 class="card-header text-center">ساخت حساب کاربری</h5>
+      <div class="card-body">
+        <h5 class="card-title">*دارها اطلاعات لازم هستند</h5>
+        <form class="mt-4" action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form.password|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12">
+                    <div class="alert alert-danger" role="alert">
+                    حساب کاربری دارم.  <a href="#" class="alert-link">ورود به حساب</a>
+                    </div>
+               </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">ثبت نام</button>
+            </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
