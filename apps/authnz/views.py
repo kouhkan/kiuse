@@ -1,12 +1,10 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView, ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from .forms import SignUpForm, SignInForm
-from .models import User
 
 
 class SignUpView(CreateView):
@@ -17,17 +15,21 @@ class SignUpView(CreateView):
 
 def signin_view(request):
     if request.method == "POST":
-        user = authenticate(
-            request,
-            username=request.POST["username"],
-            passowrd=request.POST["password"]
-        )
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            if (user := authenticate(request, username=data["username"],
+                                     passowrd=data["password"])) is not None:
+                login(request, user)
+                return redirect(reverse_lazy("authnz:signin"))
 
-        if user is None:
-            return redirect(reverse_lazy("authnz:signin"))
-
-        login(user)
-        return redirect(reverse_lazy("authnz:signout"))
+        return redirect(reverse_lazy("authnz:signin"))
 
     form = SignInForm()
     return render(request, "authnz/signin.html", context={"form": form})
+
+
+@login_required
+def signout_view(request):
+    logout(request)
+    return redirect(reverse_lazy("authnz:signin"))
