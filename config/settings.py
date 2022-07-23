@@ -14,6 +14,8 @@ import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
@@ -113,6 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+LOGIN_REDIRECT_URL = reverse_lazy("authnz:signup")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
