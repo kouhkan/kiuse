@@ -1,9 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DetailView
 
 from apps.interviews.forms import CreateInterviewForm
 from apps.interviews.models import Interview
+
+
+class UserInterviewView(LoginRequiredMixin, DetailView):
+    template_name = "interviews/detail.html"
+    queryset = Interview.objects.filter(approve=True)
 
 
 class CreateInterviewView(LoginRequiredMixin, CreateView):
