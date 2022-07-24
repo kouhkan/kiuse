@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("auth/", include("authnz.urls", namespace="authnz")),
     path("users/", include("users.urls", namespace="users")),
+    path("interviews/", include("interviews.urls", namespace="interviews")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
