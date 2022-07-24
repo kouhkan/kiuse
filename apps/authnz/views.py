@@ -39,6 +39,7 @@ def signin_view(request):
         return redirect(reverse_lazy("authnz:signin"))
 
     form = SignInForm()
+
     return render(request, "authnz/signin.html", context={"form": form})
 
 
