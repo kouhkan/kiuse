@@ -5,7 +5,9 @@ from django.dispatch import receiver
 
 
 class User(AbstractUser):
-    pass
+    email = models.EmailField(max_length=250, null=False, blank=False)
+
+    REQUIRED_FIELDS = [email]
 
     def __str__(self):
         return self.username

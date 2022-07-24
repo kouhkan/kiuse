@@ -5,5 +5,16 @@
 {% endblock %}
 
 {% block content %}
-  <h3>سلام {{ request.user.username }} عزیز. خوش آمدی.</h3>
+  <div class="mt-5">
+    <h3>سلام {{ request.user.username }} عزیز. خوش آمدی.</h3>
+  {% if interview %}
+    {% if not interview.approve %}
+      <p class="btn btn-danger btn-lg">مصاحبه‌ت ثبت شده در انتظار تاییده. سریع تاییدش میکنیم.</p>
+    {% else %}
+      <a href="{% url 'interviews:detail' interview.pk %}" class="btn btn-success btn-lg">مصاحبه‌ت تایید شده. میخوای خودت ببینیش؟</a>
+    {% endif %}
+  {% else %}
+    <p class="btn btn-warning btn-lg">اگه مایل به تکمیل مصاحبه خودت هستی، <a href="{% url 'interviews:create' %}">اینجا</a> رو کلیک کن.</p>
+  {% endif %}
+  </div>
 {% endblock %}

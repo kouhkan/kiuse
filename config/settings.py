@@ -47,6 +47,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "authnz",
     "users",
+    "interviews.apps.InterviewsConfig",
 
 ]
 
@@ -118,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LOGIN_REDIRECT_URL = reverse_lazy("authnz:signup")
+LOGIN_REDIRECT_URL = reverse_lazy("authnz:signin")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
