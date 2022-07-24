@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">کی‌یوز؟!</a>
+    <a class="navbar-brand" href="{% url 'home:index' %}">کی‌یوز؟!</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,7 +10,7 @@
             <a class="nav-link" href="{% url 'users:index' %}">پروفایل</a>
             <a class="btn btn-danger mr-2" href="{% url 'authnz:signout' %}">خروج</a>
           {% else %}
-            <a class="nav-link" href="#">صفحه اصلی</a>
+            <a class="nav-link" href="{% url 'home:index' %}">صفحه اصلی</a>
             <a class="btn btn-dark mx-2" href="{% url 'authnz:signup' %}">ثبت‌نام</a>
             <a class="btn btn-outline-dark" href="{% url 'authnz:signin' %}">ورود</a>
           {% endif %}
