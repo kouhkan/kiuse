@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ object.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="text-center mt-5">
+    <h3>جواب‌هات به سوالات مصاحبه</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="row">
+      <h4>عنوان مصاحبه‌ای که انتخاب کردی:</h4>
+      <p class="lead">{{ object.title|safe }}</p>
+    </div>
+
+      <h4>کی هستی و چیکار میکنی؟</h4>
+      <p class="lead">{{ object.about|safe }}</p>
+    </div>
+    <div class="row">
+      <h4>در مورد کار و بار نوشتی:</h4>
+      <p class="lead">{{ object.job|safe }}</p>
+    </div>
+    <div class="row">
+      <h4>سخت‌افزارهایی که استفاده می‌کنی:</h4>
+      <p class="lead">{{ object.gadget|safe }}</p>
+    </div>
+    <div class="row">
+      <h4>توضیحاتت در مورد نرم‌افزارهایی که استفاده می‌کنی:</h4>
+      <p class="lead">{{ object.software|safe }}</p>
+    </div>
+    <div class="row">
+      <h4>به‌طور کلی در مورد کتاب موسیقی فیلم و ... حرف زدی:</h4>
+      <p class="lead">{{ object.art|safe }}</p>
+    </div>
+
+  </div>
+{% endblock %}
