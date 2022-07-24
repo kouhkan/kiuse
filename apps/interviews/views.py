@@ -1,14 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
 
 from apps.interviews.forms import CreateInterviewForm, UpdateInterviewForm
 from apps.interviews.models import Interview
 
 
-class UserInterviewView(LoginRequiredMixin, DetailView):
+class UserInterviewView(DetailView):
     template_name = "interviews/detail.html"
+    context_object_name = "interview"
     queryset = Interview.objects.filter(approve=True)
 
 
@@ -40,3 +41,15 @@ class UpdateInterviewView(LoginRequiredMixin, UpdateView):
         if obj.user != self.request.user:
             return redirect(reverse_lazy("users:index"))
         return super().dispatch(request, *args, **kwargs)
+
+
+class ListInterviews(ListView):
+    template_name = "kiusebase/index.html"
+    model = Interview
+    queryset = Interview.objects.all()
+    context_object_name = "interviews"
+
+
+def detail_interview(request, id):
+    interview = Interview.objects.get(pk=id)
+    return render(request, "kiusebase.html", context={"interview": interview})

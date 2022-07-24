@@ -1,41 +1,41 @@
 {% extends "base.html" %}
 
 {% block title %}
-  {{ object.title }}
+  {{ interview.title }}
 {% endblock %}
 
 {% block content %}
   <div class="text-center mt-5">
-    <h3>جواب‌هات به سوالات مصاحبه</h3>
+    <h3>شما در حال خواندن مصاحبه {{ interview.user.username }} هستید.</h3>
   </div>
-  <div class="container">
-    <div class="row m-3 p-3">
-      <div class="row">
-        <h4>عنوان مصاحبه‌ای که انتخاب کردی:</h4>
-        <p class="lead">{{ object.title|safe }}</p>
-      </div>
-      <div class="row">
-        <h4>کی هستی و چیکار میکنی؟</h4>
-        <p class="lead">{{ object.about|safe }}</p>
+  <div class="container p-3 m-3">
+    <div class="row">
+      <h4>خودت‌و معرفی کن؛ کی هستی و چیکار میکنی؟</h4>
+      <p class="lead">{{ interview.about|safe }}</p>
     </div>
     <div class="row">
-      <h4>در مورد کار و بار نوشتی:</h4>
-      <p class="lead">{{ object.job|safe }}</p>
+      <h4>چه کارهایی تا الان انجام دادی؟ الان مشغول چه کاری هستی؟</h4>
+      <p class="lead">{{ interview.job|safe }}</p>
     </div>
     <div class="row">
-      <h4>سخت‌افزارهایی که استفاده می‌کنی:</h4>
-      <p class="lead">{{ object.gadget|safe }}</p>
+      <h4>در روز از چه سخت‌افزارهایی استفاده می‌کنی؟</h4>
+      <p class="lead">{{ interview.gadget|safe }}</p>
     </div>
     <div class="row">
-      <h4>توضیحاتت در مورد نرم‌افزارهایی که استفاده می‌کنی:</h4>
-      <p class="lead">{{ object.software|safe }}</p>
+      <h4>نرم‌افزارهایی که باهاشون مدام در ارتباطی کدوم‌ها هستن؟</h4>
+      <p class="lead">{{ interview.software|safe }}</p>
     </div>
     <div class="row">
-      <h4>به‌طور کلی در مورد کتاب موسیقی فیلم و ... حرف زدی:</h4>
-      <p class="lead">{{ object.art|safe }}</p>
+      <h4>کتاب فیلم موسیقی هر چیز دیگه، حرف آخر؟!</h4>
+      <p class="lead">{{ interview.art|safe }}</p>
     </div>
     <div class="d-grid gap-2">
-      <a href="{% url 'interviews:update' interview.id %}" class="btn btn-warning">ویرایش مصاحبه</a>
+      {% if request.user.is_authenticated and interview.user == request.user %}
+      <a href="{% url 'interviews:index'%}" class="btn btn-outline-primary">صفحه اصلی</a>
+      <a href="{% url 'interviews:update' interview.pk %}" class="btn btn-warning">ویرایش مصاحبه</a>
+      {% else %}
+      <a href="{% url 'interviews:index'%}" class="btn btn-outline-primary">صفحه اصلی</a>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
