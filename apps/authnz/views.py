@@ -32,8 +32,7 @@ def signin_view(request):
         form = SignInForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            if (user := authenticate(request, username=data["username"],
-                                     passowrd=data["password"])) is not None:
+            if (user := authenticate(request, **data)) is not None:
                 login(request, user)
                 return redirect(reverse_lazy("authnz:signin"))
 
