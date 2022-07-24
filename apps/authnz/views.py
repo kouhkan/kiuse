@@ -20,7 +20,7 @@ def signup_view(request):
 
             login(request, user)
 
-            return redirect(reverse_lazy("authnz:signin"))
+            return redirect(reverse_lazy("users:index"))
 
     form = SignUpForm()
 
@@ -34,7 +34,7 @@ def signin_view(request):
             data = form.cleaned_data
             if (user := authenticate(request, **data)) is not None:
                 login(request, user)
-                return redirect(reverse_lazy("authnz:signin"))
+                return redirect(reverse_lazy("users:index"))
 
         return redirect(reverse_lazy("authnz:signin"))
 
