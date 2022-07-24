@@ -47,7 +47,6 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "authnz",
     "users",
-    "home.apps.HomeConfig",
     "interviews.apps.InterviewsConfig",
 
 ]
