@@ -1,16 +1,30 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from .forms import SignUpForm, SignInForm
+from .models import User
 
 
-class SignUpView(CreateView):
-    template_name = "authnz/signup.html"
-    form_class = SignUpForm
-    success_url = reverse_lazy("authnz:signup")
+def signup_view(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User()
+            user.username = data["username"]
+            user.set_password(data["password"])
+            user.email = data.get("email")
+            user.save()
+
+            login(request, user)
+
+            return redirect(reverse_lazy("authnz:signin"))
+
+    form = SignUpForm()
+
+    return render(request, "authnz/signup.html", context={"form": form})
 
 
 def signin_view(request):
