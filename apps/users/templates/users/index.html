@@ -10,7 +10,7 @@
     {% if not interview.approve %}
       <p class="btn btn-danger btn-lg">مصاحبه‌ت ثبت شده در انتظار تاییده. سریع تاییدش میکنیم.</p>
     {% else %}
-      <p class="btn btn-success btn-lg">مصاحبه‌ت تایید شده. میخوای خودت ببینیش؟</p>
+      <a href="{% url 'interviews:detail' interview.pk %}" class="btn btn-success btn-lg">مصاحبه‌ت تایید شده. میخوای خودت ببینیش؟</a>
     {% endif %}
   {% else %}
     <p class="btn btn-warning btn-lg">اگه مایل به تکمیل مصاحبه خودت هستی، <a href="{% url 'interviews:create' %}">اینجا</a> رو کلیک کن.</p>
