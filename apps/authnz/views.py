@@ -46,4 +46,4 @@ def signin_view(request):
 @login_required
 def signout_view(request):
     logout(request)
-    return redirect(reverse_lazy("authnz:signin"))
+    return redirect(reverse_lazy("home:index"))
