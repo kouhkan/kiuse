@@ -30,6 +30,11 @@ class UpdateInterviewView(LoginRequiredMixin, UpdateView):
     form_class = UpdateInterviewForm
     success_url = reverse_lazy("users:index")
 
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        setattr(instance, "approve", False)
+        return super().form_valid(form)
+
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.user != self.request.user:
