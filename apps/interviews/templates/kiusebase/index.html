@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  صفحه اصلی
+{% endblock %}
+
+{% block content %}
+  <div class="mt-5">
+      <div class="mt-5 text-center justify-content-center">
+          <h3>آخرین مصاحبه‌هایی که افراد انجام دادن</h3>
+          <hr>
+          {% for interview in interviews %}
+           <div class="card">
+            <div class="card-header">
+                <p>ساعت ایجاد شده: {{ interview.created_at }}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ interview.user.username }}: {{ interview.title }}</h5>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'interviews:user' interview.pk %}" class="btn btn-primary">خواندن کل مصاحبه</a>
+                </div>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+{% endblock %}
